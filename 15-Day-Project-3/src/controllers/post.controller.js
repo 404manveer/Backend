@@ -1,14 +1,21 @@
 const postmodel = require('../model/post.model')
-import { GoogleGenAI } from "@google/genai";
+const genratecaption = require("../services/ai.service")
 
-const ai = new GoogleGenAI({});
+async function createpost(req,res) {
+  const file =req.file
+  console.log("img buffer>>>",file);
 
-async function main() {
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
-    contents: "Explain how AI works in a few words",
-  });
-  console.log(response.text);
+  const base64image = Buffer.from(file.buffer).toString('base64')
+  console.log(base64image);
+  
+
+  const caption = await genratecaption(base64image);
+  console.log("caption:", caption);
+  
+  
+  
 }
 
-await main();
+module.exports ={
+  createpost
+}
