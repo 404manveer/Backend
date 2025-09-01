@@ -21,6 +21,8 @@ const response = await ai.models.generateContent({
   contents: contents,
 });
 console.log(response.text);
+
+return response.text;
 }
 
 module.exports = genratecaption;

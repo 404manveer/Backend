@@ -10,12 +10,17 @@ async function createpost(req,res) {
   
 
   const caption = await genratecaption(base64image);
-  console.log("caption:", caption);
+  return res.status(200).json({
+     msg:"cation created succesfully",
+    caption:caption
+
+  })
   
   
   
 }
 
 module.exports ={
+ 
   createpost
 }
